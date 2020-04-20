@@ -21,6 +21,8 @@
 #
 # 2016-07-18 1.0.0
 # Initial Release
+# 2020-04-20 1.0.1
+# Updated for HDHomeRun Connect as table values were mis-matched
 
 # Commandline Parameters for IP and what kind of tuner
 
@@ -69,9 +71,9 @@ ForEach($String in $tables){
     $CurTable = @()
     $CurTable += $table[1..($table.count-2)]|ForEach{$_ -replace "</TD><TD>","," -replace "</?T(D|R)>" -replace "none", "0"}
 }
-$tunerStrength = (($CurTable[8]) -split ",") -split "%"
-$tunerQuality = (($CurTable[9]) -split ",") -split "%"
-$tunerRate = (($CurTable[12]) -split ",") -split " "
+$tunerStrength = (($CurTable[5]) -split ",") -split "%"
+$tunerQuality = (($CurTable[6]) -split ",") -split "%"
+$tunerRate = (($CurTable[9]) -split ",") -split " "
 
 $tunerArray += , ($counter, $tunerStrength[1], $tunerQuality[1], $tunerRate[2])
 
